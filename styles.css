@@ -1,0 +1,133 @@
+:root {
+  --bg-colour: rgb(12, 12, 12);
+  --fg-colour: rgb(255, 255, 255);
+  --accent-colour: rgb(255, 167, 248);
+  --header-bg: rgb(16, 16, 16);
+  --button-bg: rgb(16, 16, 16);
+  --button-hover: rgb(48, 48, 48);
+  --font: "Roboto", system-ui, sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-colour);
+  color: var(--fg-colour);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+a {
+  color: var(--fg-colour);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--fg-colour);
+}
+
+.footer-link {
+  color: var(--accent-colour);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--accent-colour);
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--header-bg);
+  padding: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+}
+
+header h1 a {
+  color: var(--fg-colour);
+  text-decoration: none;
+}
+
+header h1 a:hover {
+  color: var(--fg-colour);
+}
+
+main {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  margin: auto;
+  padding: 2rem;
+  max-width: 800px;
+  width: 90%;
+}
+
+#calculateButton {
+  background-color: var(--button-bg);
+  border: 2px solid var(--accent-colour);
+  color: var(--fg-colour);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+#calculateButton:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+#calculateButton:focus-visible {
+  outline: 3px solid var(--accent-colour);
+  outline-offset: 2px;
+}
+
+#result {
+  display: none;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.blink {
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+footer {
+  padding: 1rem;
+  text-align: center;
+}
+
+footer p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  :root {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 1rem;
+  }
+}
