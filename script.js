@@ -5,7 +5,7 @@ const messages = [
   "Jouw jeugd beoordelen...",
   "Jouw huidige levensituatie beoordelen...",
   "Sociale media activiteit analyseren...",
-  "Finale berekening maken...",
+  "Eindberekening maken...",
 ];
 
 const animate = async () => {
