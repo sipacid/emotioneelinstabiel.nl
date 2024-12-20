@@ -1,12 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
 :root {
-  --bg-colour: rgb(12, 12, 12);
-  --fg-colour: rgb(255, 255, 255);
-  --accent-colour: rgb(255, 167, 248);
+  --bg-colour: rgb(10, 8, 15);
+  --fg-colour: rgb(230, 225, 235);
+  --accent-colour: rgb(255, 35, 98);
+  --accent-dark: rgb(190, 0, 90);
+  --accent-secondary: rgb(148, 0, 255);
+  --neon-glow: 0 0 10px rgba(255, 35, 98, 0.5), 0 0 20px rgba(255, 35, 98, 0.3),
+    0 0 30px rgba(255, 35, 98, 0.1);
+  --text-glow: 0 0 8px rgba(255, 35, 98, 0.6);
   --header-bg: rgb(16, 16, 16);
   --button-bg: rgb(16, 16, 16);
   --button-hover: rgb(48, 48, 48);
   --font: "Roboto", system-ui, sans-serif;
   --font-mono: "Roboto Mono", monospace;
+  --header-gradient: linear-gradient(
+    to bottom,
+    rgba(16, 16, 16, 0.95),
+    rgba(16, 16, 16, 0.85)
+  );
+  --footer-bg: rgba(16, 16, 16, 0.5);
 
   color-scheme: dark;
 }
@@ -18,6 +31,26 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 50% 50%,
+      rgba(148, 0, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    linear-gradient(45deg, rgba(10, 8, 15, 1) 0%, rgba(25, 15, 30, 1) 100%);
+  z-index: -1;
 }
 
 a {
@@ -32,91 +65,168 @@ a:hover {
 .footer-link {
   color: var(--accent-colour);
   text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
 }
 
 .footer-link:hover {
   color: var(--accent-colour);
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.footer-link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: var(--accent-colour);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.footer-link:hover::after {
+  transform: scaleX(1);
 }
 
 header {
-  background-color: var(--header-bg);
-  padding: 1.5rem;
-  position: sticky;
+  background: var(--header-gradient);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 1.2rem 2rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
 }
 
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
+}
+
 header h1 a {
-  color: var(--fg-colour);
-  text-decoration: none;
+  color: var(--accent-colour);
+  text-shadow: var(--neon-glow);
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 header h1 a:hover {
-  color: var(--fg-colour);
+  text-shadow: var(--neon-glow), 0 0 40px var(--accent-colour);
 }
 
 main {
-  min-height: 100vh;
-  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(80, 250, 255, 0.03) 0%,
+    transparent 50%
+  );
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.content-wrapper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.1) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 101;
 }
 
 section {
-  margin: auto;
-  padding: 2rem;
-  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  max-width: 600px;
   width: 90%;
   text-align: center;
+  background: rgba(25, 20, 35, 0.3);
+  border: 1px solid var(--accent-colour);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 0 30px rgba(255, 35, 98, 0.1),
+    0 0 30px rgba(255, 35, 98, 0.15);
 }
 
 section h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   line-height: 1.2;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+  color: var(--fg-colour);
+  text-shadow: var(--text-glow);
+  letter-spacing: 1px;
 }
 
 #calculateButton {
-  background-color: var(--button-bg);
-  border: 2px solid var(--accent-colour);
-  color: var(--fg-colour);
-  padding: 0.75rem 1.5rem;
-  font-size: 1.1rem;
+  background: rgba(255, 35, 98, 0.1);
+  border: 1px solid var(--accent-colour);
+  color: var(--accent-colour);
+  text-shadow: 0 0 5px var(--accent-colour);
+  box-shadow: inset 0 0 20px rgba(255, 35, 98, 0.2),
+    0 0 20px rgba(255, 35, 98, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 4px;
-  min-width: 200px;
-  margin: 1rem auto;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  min-width: 220px;
+  margin: 2rem auto;
+  font-weight: 500;
+  box-shadow: 0 0 20px rgba(80, 250, 255, 0.1);
 }
 
 #calculateButton:hover {
-  background-color: var(--button-hover);
+  background: rgba(255, 35, 98, 0.15);
+  box-shadow: inset 0 0 30px rgba(255, 35, 98, 0.3),
+    0 0 30px rgba(255, 35, 98, 0.2);
+  text-shadow: 0 0 8px var(--accent-colour);
   transform: translateY(-2px);
-}
-
-#calculateButton:focus-visible {
-  outline: 3px solid var(--accent-colour);
-  outline-offset: 2px;
 }
 
 #result {
   display: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin: 2rem auto;
   max-width: 90%;
+  font-weight: 500;
+  color: var(--accent-colour);
+  text-shadow: var(--neon-glow);
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
 }
 
 @keyframes blink {
   0%,
   100% {
     opacity: 1;
+    text-shadow: var(--neon-glow);
   }
   50% {
-    opacity: 0.4;
+    opacity: 0.5;
+    text-shadow: none;
   }
 }
 
@@ -125,38 +235,59 @@ section h1 {
 }
 
 footer {
-  padding: 1rem;
+  background: var(--footer-bg);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 1.5rem;
   text-align: center;
-}
-
-footer p {
-  font-size: 1rem;
-  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
-  section h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+  body {
+    min-height: 100dvh;
   }
 
-  header {
-    padding: 1rem;
+  main {
+    padding-top: 60px;
   }
 
-  header h1 {
-    font-size: 1.5rem;
-  }
-
-  #calculateButton {
-    width: 100%;
-    max-width: 300px;
-    padding: 1rem;
-    font-size: 1.2rem;
+  .content-wrapper {
+    padding: 0;
+    min-height: unset;
   }
 
   section {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem;
+    margin: 0.5rem auto;
+    width: 90%;
+    max-height: calc(100dvh - 120px);
+  }
+
+  section h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  #calculateButton {
+    padding: 0.875rem 1.5rem;
+    margin: 1rem auto;
+    min-width: 180px;
+    font-size: 1.1rem;
+  }
+
+  #result {
+    margin: 1rem auto;
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  .content-wrapper::before {
+    display: none;
   }
 }
 
@@ -171,22 +302,131 @@ footer p {
 }
 
 @media (max-width: 480px) {
+  :root {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 1.25rem;
+    margin: 0.25rem auto;
+  }
+
   section h1 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #calculateButton {
+    padding: 0.75rem 1.25rem;
+    margin: 0.75rem auto;
+  }
+
+  #result {
+    margin: 0.75rem auto;
+  }
+
+  .content-wrapper::before {
+    display: none;
+  }
+
+  section {
+    padding: 1.75rem 1.25rem;
+    width: 92%;
+    margin: 0.5rem auto;
+  }
+
+  section h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  #calculateButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1.1rem;
+    min-width: 180px;
+    margin: 1.25rem auto;
   }
 
   #result {
     font-size: 1.1rem;
+    padding: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .content-wrapper {
+    padding: 1.5rem 0.75rem;
+  }
+
+  section {
+    padding: 1.5rem 1rem;
+    margin: 0.75rem auto;
+    width: 90%;
+    border-radius: 12px;
+  }
+
+  section h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  #result {
+    font-size: 1rem;
     line-height: 1.4;
+    padding: 0 0.5rem;
+  }
+
+  footer {
+    padding: 0.875rem;
   }
 
   footer p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  section {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  #calculateButton {
+    margin: 1.5rem auto;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    min-width: 200px;
+  }
+
+  .content-wrapper {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 350px) {
+  section {
+    padding: 1.25rem 1rem;
+    width: 92%;
+  }
+
+  section h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  #calculateButton {
+    min-width: 160px;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
   }
 }
 
 @media (hover: none) {
   #calculateButton:hover {
     transform: none;
+    background: rgba(255, 35, 98, 0.1);
+    box-shadow: none;
   }
 }
