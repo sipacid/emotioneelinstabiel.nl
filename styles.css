@@ -6,7 +6,8 @@
   --accent-colour: rgb(255, 35, 98);
   --accent-dark: rgb(190, 0, 90);
   --accent-secondary: rgb(148, 0, 255);
-  --neon-glow: 0 0 10px rgba(255, 35, 98, 0.5), 0 0 20px rgba(255, 35, 98, 0.3),
+  --neon-glow:
+    0 0 10px rgba(255, 35, 98, 0.5), 0 0 20px rgba(255, 35, 98, 0.3),
     0 0 30px rgba(255, 35, 98, 0.1);
   --text-glow: 0 0 8px rgba(255, 35, 98, 0.6);
   --header-bg: rgb(16, 16, 16);
@@ -44,7 +45,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 50% 50%,
       rgba(148, 0, 255, 0.03) 0%,
       transparent 50%
@@ -118,7 +120,9 @@ header h1 a {
 }
 
 header h1 a:hover {
-  text-shadow: var(--neon-glow), 0 0 40px var(--accent-colour);
+  text-shadow:
+    var(--neon-glow),
+    0 0 40px var(--accent-colour);
 }
 
 main {
@@ -164,7 +168,8 @@ section {
   border-radius: 16px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: inset 0 0 30px rgba(255, 35, 98, 0.1),
+  box-shadow:
+    inset 0 0 30px rgba(255, 35, 98, 0.1),
     0 0 30px rgba(255, 35, 98, 0.15);
 }
 
@@ -183,7 +188,8 @@ section h1 {
   border: 1px solid var(--accent-colour);
   color: var(--accent-colour);
   text-shadow: 0 0 5px var(--accent-colour);
-  box-shadow: inset 0 0 20px rgba(255, 35, 98, 0.2),
+  box-shadow:
+    inset 0 0 20px rgba(255, 35, 98, 0.2),
     0 0 20px rgba(255, 35, 98, 0.1);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -200,7 +206,8 @@ section h1 {
 
 #calculateButton:hover {
   background: rgba(255, 35, 98, 0.15);
-  box-shadow: inset 0 0 30px rgba(255, 35, 98, 0.3),
+  box-shadow:
+    inset 0 0 30px rgba(255, 35, 98, 0.3),
     0 0 30px rgba(255, 35, 98, 0.2);
   text-shadow: 0 0 8px var(--accent-colour);
   transform: translateY(-2px);
